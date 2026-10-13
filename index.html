@@ -1,0 +1,332 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website của tôi</title>
+
+    <style>
+        /* Cài đặt chung */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+            transition: 0.3s;
+        }
+
+        /* Thanh menu */
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Phần giới thiệu */
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Nội dung chính */
+        .container {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0000000d;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .task span {
+            overflow-wrap: anywhere;
+        }
+
+        .task.done span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task button {
+            padding: 8px 10px;
+            flex-shrink: 0;
+        }
+
+        .delete {
+            background: #dc2626;
+        }
+
+        .delete:hover {
+            background: #b91c1c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #1e293b;
+            color: white;
+        }
+
+        /* Giao diện tối */
+        body.dark {
+            background: #111827;
+            color: #f9fafb;
+        }
+
+        body.dark .hero,
+        body.dark .card {
+            background: #1f2937;
+            color: #f9fafb;
+        }
+
+        body.dark .hero p {
+            color: #d1d5db;
+        }
+
+        body.dark input {
+            background: #374151;
+            color: white;
+            border-color: #4b5563;
+        }
+
+        body.dark .task {
+            border-color: #374151;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px;
+            }
+
+            nav a {
+                margin-left: 0;
+                margin-right: 12px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .task {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Thanh menu -->
+    <header>
+        <h2>My Website</h2>
+
+        <nav>
+            <a href="#home">Trang chủ</a>
+            <a href="#about">Giới thiệu</a>
+            <a href="#tasks">Công việc</a>
+        </nav>
+    </header>
+
+    <!-- Trang chủ -->
+    <section class="hero" id="home">
+        <h1>Chào mừng đến website của tôi!</h1>
+        <p>Đây là trang web đầu tiên được tạo bằng HTML, CSS và JavaScript.</p>
+        <button onclick="sayHello()">Bấm vào đây</button>
+    </section>
+
+    <!-- Nội dung -->
+    <main class="container">
+
+        <section class="card" id="about">
+            <h2>Giới thiệu</h2>
+            <p>
+                Đây là một website mẫu giúp bạn thực hành những thao tác
+                cơ bản như bấm nút, nhập dữ liệu, quản lý công việc
+                và thay đổi giao diện.
+            </p>
+
+            <br>
+
+            <button onclick="toggleTheme()">
+                Đổi giao diện sáng/tối
+            </button>
+        </section>
+
+        <section class="card" id="tasks">
+            <h2>Danh sách công việc</h2>
+            <p>Nhập một công việc rồi nhấn nút thêm.</p>
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Ví dụ: Học HTML..."
+            >
+
+            <button onclick="addTask()">+ Thêm công việc</button>
+
+            <div id="taskList"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 My Website | Website thực hành của tôi</p>
+    </footer>
+
+    <script>
+        // Hiển thị lời chào
+        function sayHello() {
+            alert("Xin chào! Chào mừng bạn đến với website.");
+        }
+
+        // Chuyển đổi giao diện sáng và tối
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+
+        // Thêm công việc
+        function addTask() {
+            const input = document.getElementById("taskInput");
+            const content = input.value.trim();
+
+            if (content === "") {
+                alert("Bạn hãy nhập nội dung công việc!");
+                return;
+            }
+
+            const task = document.createElement("div");
+            task.className = "task";
+
+            const text = document.createElement("span");
+            text.textContent = content;
+
+            const completeButton = document.createElement("button");
+            completeButton.textContent = "Hoàn thành";
+
+            completeButton.onclick = function () {
+                task.classList.toggle("done");
+
+                completeButton.textContent =
+                    task.classList.contains("done")
+                    ? "Đánh dấu lại"
+                    : "Hoàn thành";
+            };
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Xóa";
+            deleteButton.className = "delete";
+
+            deleteButton.onclick = function () {
+                task.remove();
+            };
+
+            const actions = document.createElement("div");
+            actions.style.display = "flex";
+            actions.style.gap = "6px";
+            actions.style.flexWrap = "wrap";
+
+            actions.appendChild(completeButton);
+            actions.appendChild(deleteButton);
+
+            task.appendChild(text);
+            task.appendChild(actions);
+
+            document.getElementById("taskList").appendChild(task);
+
+            input.value = "";
+            input.focus();
+        }
+
+        // Cho phép nhấn Enter để thêm công việc
+        document.getElementById("taskInput").addEventListener(
+            "keydown",
+            function (event) {
+                if (event.key === "Enter") {
+                    addTask();
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>
+```
